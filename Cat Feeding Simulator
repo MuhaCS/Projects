@@ -1,0 +1,24 @@
+import random
+
+
+Food = int(input("How much food will you leave your cat (in grams)? Enter above 1000: "))
+Gone = int(input("How many days will you be gone for?: "))
+
+left = Food
+Fed = 0
+
+while left > 0 and Gone > 0:
+    Eat = random.randint(50, 80)
+    left = left - Eat
+    if random.random() < 0.1:
+        left = 0
+    print("Day " + str(Fed+1) + ":" + str(left) + " grams of food left")
+    Fed = Fed + 1
+    Gone = Gone - 1
+    if left <= 0:
+        Fed = Fed - 1
+        
+if left >= 0:
+    print("The cat was able to eat for "+ str(Fed) +" days before the dog ate everything")
+else:
+    print("The cat ran out of food after " + str(Fed) + " days.")
