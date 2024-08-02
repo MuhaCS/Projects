@@ -1,0 +1,58 @@
+import random
+
+
+grid = []
+
+for row in range(8):
+    grid.append([])
+    for i in range(8):
+        rand = random.randint(20,100)
+        grid[row].append(rand)
+
+
+for row in grid:
+    print(row)
+    
+y = int(input("What is the row value of the random block (0-7): "))
+x = int(input("What is the column value of the random block (0-7): "))
+
+
+while y and x <= 0:
+    print("pick a number that is between 0-7")
+    y = int(input("What is the row value of the random block (0-7): "))
+    x = int(input("What is the column value of the random block (0-7): "))
+while y  and x >= 7:
+    print("pick a number that is between 0-7")
+    y = int(input("What is the row value of the random block (0-7): "))
+    x = int(input("What is the column value of the random block (0-7): "))
+
+neighbors = []
+
+e = ""
+neighbors.append(grid[x][y])
+if y > 0:
+    #north
+    neighbors.append(grid[y - 1][x])
+else:
+    e = "Invalid"
+if y < 7:
+    #south
+    neighbors.append(grid[y + 1][x])
+else:
+    e = "Invalid"
+if x > 0:
+    #east
+    neighbors.append(grid[y][x - 1])
+else:
+    e = "Invalid"
+if x < 7:
+    #west
+    neighbors.append(grid[y][x + 1])
+else:
+    e = "Invalid"
+neighbors.append(grid[x][y])
+    
+if e == "Invalid":
+    print("Not possible")
+elif e != "Invalid":
+    print("Smallest neighbor: " + str(min(neighbors)))
