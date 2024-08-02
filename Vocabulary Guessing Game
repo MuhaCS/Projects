@@ -1,0 +1,31 @@
+import random
+
+vocabulary = ["accomplish", "authorize", "calculate", "conversation", 
+            "declaration", "difficulty", "entertainment", "explanation", 
+            "imagination", "information", "invitation", "knowledgeable", 
+            "measurement", "notification", "opportunity", "performance", 
+            "presentation", "production", "recommendation", "responsibility", 
+]
+
+word = random.choice(vocabulary)
+tries = 0
+total_score = 0
+
+while True:
+    guess = input("Enter your guess: ")
+    tries = tries + 1
+    if guess == word:
+        print("Congratulations! You guessed the word " + str(word) + ".")
+        break
+    if guess in word:
+        occurrence = word.count(guess)
+        score = occurrence * len(guess) * len(guess)
+        total_score = total_score + score
+        
+        print("Substring Occurrence:" + str(occurrence))
+        print("Score Calculation: " + str(score))
+        print("Score Total: " + str(total_score))
+    else:
+        print("Substring not found in the word")
+
+print(f"The total was " + str(total_score) + " and the total number of tries was " + str(tries))
